@@ -38,6 +38,7 @@ class KnownCircle extends Component {
       curText: '<No Event>',
       prevText: '<No Event>',
       prev2Text: '<No Event>',
+      searchTerm : ''
     }
   }
 
@@ -75,6 +76,14 @@ class KnownCircle extends Component {
     });
   }
 
+  submitSearch (data) {
+    var text = data.nativeEvent.text;
+    this.setState({
+      isSearchOn : false,
+      searchTerm : text
+    });
+  }
+
   render() {
     return (
       <View>
@@ -106,9 +115,7 @@ class KnownCircle extends Component {
                   onEndEditing={(event) => this.updateText(
                     'onEndEditing text: ' + event.nativeEvent.text
                   )}
-                  onSubmitEditing={(event) => this.updateText(
-                    'onSubmitEditing text: ' + event.nativeEvent.text
-                  )}
+                  onSubmitEditing={this.submitSearch.bind(this)}
                   style={styles.searchbar}
                 />
                :
