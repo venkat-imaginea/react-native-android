@@ -83,6 +83,11 @@ class KnownCircle extends Component {
       searchTerm : text
     });
   }
+  toggleSearchBar () {
+    this.setState({
+      isSearchOn : false
+    });
+  }
 
   render() {
     return (
@@ -108,13 +113,11 @@ class KnownCircle extends Component {
                   underlineColorAndroid = "#f27052"
                   autoCorrect={true}
                   onFocus={() => this.updateText('onFocus')}
-                  onBlur={() => this.updateText('onBlur')}
+                  onBlur={this.toggleSearchBar.bind(this)}
                   onChange={(event) => this.updateText(
                     'onChange text: ' + event.nativeEvent.text
                   )}
-                  onEndEditing={(event) => this.updateText(
-                    'onEndEditing text: ' + event.nativeEvent.text
-                  )}
+                  onEndEditing={this.toggleSearchBar.bind(this)}
                   onSubmitEditing={this.submitSearch.bind(this)}
                   style={styles.searchbar}
                 />
