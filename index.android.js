@@ -19,8 +19,8 @@ const Item = Picker.Item;
 
 
 var toolbarActions = [
+  {title: 'Search',icon: require('./app/images/searchx.png'), show: 'always', showWithText: true},
   {title: 'Filter', icon: require('./app/images/filterx.png'), show: 'always', showWithText: true},
-  // {title: 'Filter', show: 'ifRoom'},
   // {title: 'Settings', icon: require('image!ic_settings_black_48dp'), show: 'always'},
 ];
 
@@ -33,25 +33,27 @@ class KnownCircle extends Component {
       selected_filter: 'sortby',
       color: 'red',
       mode: Picker.MODE_DIALOG,
-      isPickerOn: true
+      isPickerOn: false
     }
   }
 
-  onActionSelected (position) {
-    if (position === 0) { // Filter
-      this.setState({
-        isPickerOn : true
-      })
+  onActionSelected (position) { // Toolbar Action Select Event
+    switch (position) {
+      case 0: // Search
+        
+        break;
+      case 1: // Filter
+        this.setState({
+          isPickerOn : true
+        });
+        break;
     }
-    // this.setState({
-    //   actionText: 'Selected ' + toolbarActions[position].title,
-    // });
   }
-  onIconClicked (value) {
+  onIconClicked (value) { // Toolbar Icon click Event
     console.log(value);
   }
 
-  onValueChange (key: string, value: string) {
+  onValueChange (key: string, value: string) { // Picker Value Change Event
    const newState = {};
     newState[key] = value;
     this.setState(newState);
