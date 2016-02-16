@@ -104,7 +104,7 @@ class KnownCircle extends Component {
                 <TextInput
                   autoCapitalize="none"
                   placeholder="Find by business, name, service, city"
-                  placeholderTextColor="#fff"
+                  placeholderTextColor="#536878"
                   underlineColorAndroid = "#f27052"
                   autoCorrect={true}
                   onFocus={() => this.updateText('onFocus')}
