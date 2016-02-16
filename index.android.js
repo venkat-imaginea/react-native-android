@@ -13,15 +13,12 @@ import React, {
 
 const Item = Picker.Item;
 
-// var ToolbarAndroid = require('ToolbarAndroid');
-
 // var Globals = require('./app/globals').load()
 
 
 var toolbarActions = [
   {title: 'Search',icon: require('./app/images/searchx.png'), show: 'always', showWithText: true},
   {title: 'Filter', icon: require('./app/images/filterx.png'), show: 'always', showWithText: true},
-  // {title: 'Settings', icon: require('image!ic_settings_black_48dp'), show: 'always'},
 ];
 
 class KnownCircle extends Component {
@@ -71,8 +68,7 @@ class KnownCircle extends Component {
             style={styles.toolbar}
             titleColor = "#fff"
             subtitleColor = "#fff"
-            title="KnownCircle">
-        </ToolbarAndroid>
+            title="KnownCircle"/>
 
         <View style={styles.pickerWrapper}>
            {
@@ -92,7 +88,6 @@ class KnownCircle extends Component {
             null
           }
         </View>
-        
       </View>
     );
   }
@@ -102,7 +97,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
-
   },
   welcome: {
     fontSize: 20,
@@ -120,7 +114,6 @@ const styles = StyleSheet.create({
     width: 360,
     height: 56,
     marginTop: 10,
-    // backgroundColor: '#ccc',
     backgroundColor: '#1C2938',
   },
   pickerWrapper: {

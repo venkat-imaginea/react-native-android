@@ -3,18 +3,18 @@ var searchBar = require('./searchBar')
 
 var RightCorner = React.createClass({
     goToSearch: function(){
-        var me = this;
+        var self = this;
         var route = {
-            name: "",
+            naself: "",
             component: SearchPage,
             titleComponent: searchBar
         }
-        me.props.toRoute(route)
+        self.props.toRoute(route)
     },
     render: function(){
-        var me = this;
+        var self = this;
         return (
-            <Text style={{marginRight: 20}} onPress={() => me.goToSearch()}>
+            <Text style={{marginRight: 20}} onPress={() => self.goToSearch()}>
                 Find
             </Text>
         )

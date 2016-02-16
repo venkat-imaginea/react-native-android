@@ -6,7 +6,7 @@ var SearchPage =React.createClass({
         }
     },
     render: function(){
-        var me = this;
+        var self = this;
         
         return (
             <Text>

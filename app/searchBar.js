@@ -1,15 +1,12 @@
 var searchBar = React.createClass({
     saveText: function(text){
-        DB.search_query.update({actor: "tweet"}, {query: text})
-    },
-    componentWillUnmount: function(){
-        DB.search_query.update({actor: "tweet"}, {query: ""})
+        console.log(text);
     },
     render: function(){
-        var me = this;
+        var self = this;
         return (
             <TextInput style={styles.input}
-                onChangeText={(text) => me.saveText(text)}
+                onChangeText={(text) => self.saveText(text)}
                 placeholder="Search Tweets" placeholderColor={"#FFF"}></TextInput>
         )
     }
