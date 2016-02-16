@@ -6,6 +6,7 @@ import React, {
   Component,
   StyleSheet,
   Text,
+  TextInput,
   View,
   ToolbarAndroid,
   Picker
@@ -30,14 +31,22 @@ class KnownCircle extends Component {
       selected_filter: 'sortby',
       color: 'red',
       mode: Picker.MODE_DIALOG,
-      isPickerOn: false
+      isPickerOn: false,
+      isSearchOn: false,
+
+      //SearchBar
+      curText: '<No Event>',
+      prevText: '<No Event>',
+      prev2Text: '<No Event>',
     }
   }
 
   onActionSelected (position) { // Toolbar Action Select Event
     switch (position) {
       case 0: // Search
-        
+        this.setState({
+          isSearchOn : true
+        });
         break;
       case 1: // Filter
         this.setState({
@@ -56,6 +65,16 @@ class KnownCircle extends Component {
     this.setState(newState);
   }
 
+  updateText (text) { // Updates Text on SearchBar
+    this.setState((state) => {
+      return {
+        curText: text,
+        prevText: state.curText,
+        prev2Text: state.prevText,
+      };
+    });
+  }
+
   render() {
     return (
       <View>
@@ -68,7 +87,34 @@ class KnownCircle extends Component {
             style={styles.toolbar}
             titleColor = "#fff"
             subtitleColor = "#fff"
-            title="KnownCircle"/>
+            title={this.state.isSearchOn ? '' : 'KnownCircle'}>
+
+            {
+              this.state.isSearchOn
+               ?
+                <TextInput
+                  autoCapitalize="none"
+                  placeholder="Find by business, name, service, city"
+                  placeholderTextColor="#fff"
+                  underlineColorAndroid = "#f27052"
+                  autoCorrect={true}
+                  onFocus={() => this.updateText('onFocus')}
+                  onBlur={() => this.updateText('onBlur')}
+                  onChange={(event) => this.updateText(
+                    'onChange text: ' + event.nativeEvent.text
+                  )}
+                  onEndEditing={(event) => this.updateText(
+                    'onEndEditing text: ' + event.nativeEvent.text
+                  )}
+                  onSubmitEditing={(event) => this.updateText(
+                    'onSubmitEditing text: ' + event.nativeEvent.text
+                  )}
+                  style={styles.searchbar}
+                />
+               :
+                null
+            }
+        </ToolbarAndroid>
 
         <View style={styles.pickerWrapper}>
            {
@@ -98,10 +144,12 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
-  welcome: {
-    fontSize: 20,
+  searchbar: {
+    fontSize: 12,
+    padding: 15,
+    color: '#fff',
     textAlign: 'center',
-    margin: 10,
+    width: 200
   },
   filter: {
     textAlign: 'right',
